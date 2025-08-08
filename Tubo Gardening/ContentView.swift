@@ -8,14 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    let plants: [PlantPreview] = [
+        PlantPreview(id: UUID(), name: "Sunflower", image: "chilli"),
+        PlantPreview(id: UUID(), name: "Chilli", image: "chilli"),
+        PlantPreview(id: UUID(), name: "Basil", image: "chilli"),
+        PlantPreview(id: UUID(), name: "Sunflower", image: "chilli"),
+        PlantPreview(id: UUID(), name: "Sunflower", image: "chilli"),
+        PlantPreview(id: UUID(), name: "Chilli", image: "chilli"),
+        PlantPreview(id: UUID(), name: "Basil", image: "chilli"),
+        PlantPreview(id: UUID(), name: "Sunflower", image: "chilli")
+    ]
+    
+   private let columns = [
+       GridItem(.flexible()),
+       GridItem(.flexible())
+   ]
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 16) {
+                ForEach(plants) { PlantCardView(plant: $0) }
+            }
+            .padding()
         }
-        .padding()
     }
 }
 
