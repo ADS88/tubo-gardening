@@ -35,12 +35,14 @@ struct ContentView: View {
                                 return UIImage(named: "chilli")!
                             }
                         }()
-                        PlantCardView(plant: PlantPreview(
+                        let plantPreview: PlantPreview = PlantPreview(
                             id: plant.id ?? UUID(),
                             name: plant.name ?? "",
                             image: uiImage
                         )
-                                      )
+                        NavigationLink(destination: PlantDetailView(plant: plantPreview)) {
+                            PlantCardView(plant: plantPreview)
+                        }
                     }
                 }
                 .padding()

@@ -8,11 +8,14 @@ struct PlantCardView: View {
             Image(uiImage: plant.image)
                 .resizable()
                 .scaledToFit()
+//                .frame(height: 200)
+                .clipped()
 
             Text(plant.name)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 4)
                 .background(Color.white)
+                .foregroundStyle(.black)
                 .cornerRadius(12)
                 .padding(8)
         }
