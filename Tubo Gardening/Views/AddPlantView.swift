@@ -10,6 +10,7 @@ struct AddPlantView: View {
     @State private var plantName: String = ""
     @State private var selectedItem: PhotosPickerItem? = nil
     @State private var selectedImage: Image? = nil
+    @State private var uiImage: UIImage? = nil
 
     var body: some View {
         VStack {
@@ -31,6 +32,7 @@ struct AddPlantView: View {
                             let uiImage = UIImage(data: data)
                         {
                             selectedImage = Image(uiImage: uiImage)
+                            self.uiImage = uiImage
                         }
                     }
                 }
@@ -48,11 +50,12 @@ struct AddPlantView: View {
                 Button("Submit") {
                     // Perform action here
                     print("Form submitted")
+                    guard let uiImage else { return }
                     let newPlant = Plant(context: context)
                     newPlant.name = plantName
                     newPlant.createdAt = Date()
                     newPlant.id = UUID()
-                    newPlant.image = "chilli"
+                    newPlant.image = uiImage.jpegData(compressionQuality: 1.0)
                     do {
                         try context.save()
                         dismiss()

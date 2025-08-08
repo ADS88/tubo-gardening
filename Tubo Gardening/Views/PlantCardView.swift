@@ -5,7 +5,7 @@ struct PlantCardView: View {
     let plant: PlantPreview
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            Image(plant.image)
+            Image(uiImage: plant.image)
                 .resizable()
                 .scaledToFit()
 
@@ -23,6 +23,6 @@ struct PlantCardView: View {
 }
 
 #Preview(traits: .fixedLayout(width: 300, height: 600)) {
-    let plant = PlantPreview(id: UUID(), name: "Chilli", image: "chilli")
+    let plant = PlantPreview(id: UUID(), name: "Chilli", image: UIImage(named: "chilli")!)
     PlantCardView(plant: plant).padding(16)
 }

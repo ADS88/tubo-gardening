@@ -28,11 +28,19 @@ struct ContentView: View {
                         AddPlantCardView()
                     }
                     ForEach(plants) {plant in
+                        let uiImage: UIImage = {
+                            if let data = plant.image, let img = UIImage(data: data) {
+                                return img
+                            } else {
+                                return UIImage(named: "chilli")!
+                            }
+                        }()
                         PlantCardView(plant: PlantPreview(
                             id: plant.id ?? UUID(),
                             name: plant.name ?? "",
-                            image: plant.image ?? "chilli")
+                            image: uiImage
                         )
+                                      )
                     }
                 }
                 .padding()
