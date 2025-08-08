@@ -23,7 +23,7 @@ struct PlantCardView: View {
 }
 
 
-#Preview(traits: .fixedLayout(width: 600, height: 600)) {
+#Preview(traits: .fixedLayout(width: 300, height: 600)) {
     let plant = PlantPreview( id: UUID(), name: "Chilli", image: "chilli")
     PlantCardView(plant: plant).padding(16)
 }
