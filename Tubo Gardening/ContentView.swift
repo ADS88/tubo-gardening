@@ -16,20 +16,38 @@ struct ContentView: View {
         PlantPreview(id: UUID(), name: "Sunflower", image: "chilli"),
         PlantPreview(id: UUID(), name: "Chilli", image: "chilli"),
         PlantPreview(id: UUID(), name: "Basil", image: "chilli"),
+        PlantPreview(id: UUID(), name: "Sunflower", image: "chilli"),
+        PlantPreview(id: UUID(), name: "Sunflower", image: "chilli"),
+        PlantPreview(id: UUID(), name: "Sunflower", image: "chilli"),
+        PlantPreview(id: UUID(), name: "Chilli", image: "chilli"),
+        PlantPreview(id: UUID(), name: "Basil", image: "chilli"),
         PlantPreview(id: UUID(), name: "Sunflower", image: "chilli")
     ]
     
-   private let columns = [
-       GridItem(.flexible()),
-       GridItem(.flexible())
-   ]
+    private let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
     
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: 16) {
-                ForEach(plants) { PlantCardView(plant: $0) }
+        NavigationStack{
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 16) {
+                    ForEach(plants) { PlantCardView(plant: $0) }
+                }
+                .padding()
             }
-            .padding()
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        HStack {
+                            Image("tubo-logo")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                            Text("Tubo Gardening")
+                                .font(.headline)
+                        }
+                    }
+                }
         }
     }
 }
