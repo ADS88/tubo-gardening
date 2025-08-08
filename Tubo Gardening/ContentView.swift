@@ -46,7 +46,7 @@ struct ContentView: View {
                         Image("tubo-logo")
                             .resizable()
                             .frame(width: 50, height: 50)
-                        Text("Tubo Gardening")
+                        Text("Tubo")
                                 .font(.headline)
                     }
                 }
