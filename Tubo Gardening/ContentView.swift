@@ -33,7 +33,9 @@ struct ContentView: View {
         NavigationStack{
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 16) {
-                    AddPlantCardView()
+                    NavigationLink(destination: AddPlantView()) {
+                        AddPlantCardView()
+                    }
                     ForEach(plants) { PlantCardView(plant: $0) }
                 }
                 .padding()
@@ -44,7 +46,7 @@ struct ContentView: View {
                             Image("tubo-logo")
                                 .resizable()
                                 .frame(width: 50, height: 50)
-                            Text("Tubo Gardening")
+                            Text("Tubo")
                                 .font(.headline)
                         }
                     }
