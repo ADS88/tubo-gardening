@@ -11,7 +11,6 @@ struct PlantCardView: View {
                     
             Text(plant.name)
                         .font(.headline)
-                        .fontWeight(.bold)
                         .padding(8)
                 }
                 .background(Color.white)
@@ -25,3 +24,4 @@ struct PlantCardView: View {
     let plant = PlantPreview( id: UUID(), name: "Chilli", image: "chilli")
     PlantCardView(plant: plant).padding(16)
 }
+

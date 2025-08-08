@@ -33,6 +33,7 @@ struct ContentView: View {
         NavigationStack{
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 16) {
+                    AddPlantCardView()
                     ForEach(plants) { PlantCardView(plant: $0) }
                 }
                 .padding()
