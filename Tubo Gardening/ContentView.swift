@@ -7,23 +7,14 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    let plants: [PlantPreview] = [
-        PlantPreview(id: UUID(), name: "Sunflower", image: "chilli"),
-        PlantPreview(id: UUID(), name: "Chilli", image: "chilli"),
-        PlantPreview(id: UUID(), name: "Basil", image: "chilli"),
-        PlantPreview(id: UUID(), name: "Sunflower", image: "chilli"),
-        PlantPreview(id: UUID(), name: "Sunflower", image: "chilli"),
-        PlantPreview(id: UUID(), name: "Chilli", image: "chilli"),
-        PlantPreview(id: UUID(), name: "Basil", image: "chilli"),
-        PlantPreview(id: UUID(), name: "Sunflower", image: "chilli"),
-        PlantPreview(id: UUID(), name: "Sunflower", image: "chilli"),
-        PlantPreview(id: UUID(), name: "Sunflower", image: "chilli"),
-        PlantPreview(id: UUID(), name: "Chilli", image: "chilli"),
-        PlantPreview(id: UUID(), name: "Basil", image: "chilli"),
-        PlantPreview(id: UUID(), name: "Sunflower", image: "chilli"),
-    ]
+let defaults = UserDefaults.standard
 
+struct ContentView: View {
+    
+    // Make a new fetch request with no sorting
+    @Environment(\.managedObjectContext) var context
+    @FetchRequest(sortDescriptors: []) var plants: FetchedResults<Plant>
+    
     private let columns = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -36,7 +27,13 @@ struct ContentView: View {
                     NavigationLink(destination: AddPlantView()) {
                         AddPlantCardView()
                     }
-                    ForEach(plants) { PlantCardView(plant: $0) }
+                    ForEach(plants) {plant in
+                        PlantCardView(plant: PlantPreview(
+                            id: plant.id ?? UUID(),
+                            name: plant.name ?? "",
+                            image: plant.image ?? "chilli")
+                        )
+                    }
                 }
                 .padding()
             }

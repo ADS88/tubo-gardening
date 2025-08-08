@@ -2,6 +2,7 @@ import Foundation
 import SwiftUI
 
 struct AddPlantCardView: View {
+    
     var body: some View {
         VStack {
             Text("Add Plant")
@@ -12,7 +13,7 @@ struct AddPlantCardView: View {
                 .foregroundStyle(.blue)
                 .font(.headline)
 
-        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center).frame(minHeight: 100)
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(style: StrokeStyle(lineWidth: 2, dash: [10, 5]))

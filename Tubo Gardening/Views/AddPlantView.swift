@@ -2,7 +2,11 @@ import Foundation
 import PhotosUI
 import SwiftUI
 
+
 struct AddPlantView: View {
+    @Environment(\.managedObjectContext) var context
+    @Environment(\.dismiss) private var dismiss
+    
     @State private var plantName: String = ""
     @State private var selectedItem: PhotosPickerItem? = nil
     @State private var selectedImage: Image? = nil
@@ -44,6 +48,18 @@ struct AddPlantView: View {
                 Button("Submit") {
                     // Perform action here
                     print("Form submitted")
+                    let newPlant = Plant(context: context)
+                    newPlant.name = plantName
+                    newPlant.createdAt = Date()
+                    newPlant.id = UUID()
+                    newPlant.image = "chilli"
+                    do {
+                        try context.save()
+                        dismiss()
+                    } catch {
+                        let nsError = error as NSError
+                        fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+                    }
                 }.buttonStyle(.borderedProminent)
                     .disabled(plantName.isEmpty || selectedImage == nil)
             }
