@@ -21,16 +21,16 @@ struct ContentView: View {
         PlantPreview(id: UUID(), name: "Sunflower", image: "chilli"),
         PlantPreview(id: UUID(), name: "Chilli", image: "chilli"),
         PlantPreview(id: UUID(), name: "Basil", image: "chilli"),
-        PlantPreview(id: UUID(), name: "Sunflower", image: "chilli")
+        PlantPreview(id: UUID(), name: "Sunflower", image: "chilli"),
     ]
-    
+
     private let columns = [
         GridItem(.flexible()),
-        GridItem(.flexible())
+        GridItem(.flexible()),
     ]
-    
+
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 16) {
                     NavigationLink(destination: AddPlantView()) {
@@ -40,17 +40,17 @@ struct ContentView: View {
                 }
                 .padding()
             }
-                .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        HStack {
-                            Image("tubo-logo")
-                                .resizable()
-                                .frame(width: 50, height: 50)
-                            Text("Tubo")
-                                .font(.headline)
-                        }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    HStack {
+                        Image("tubo-logo")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                        Text("Tubo")
+                            .font(.headline)
                     }
                 }
+            }
         }
     }
 }
